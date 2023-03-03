@@ -1,0 +1,22 @@
+--- godot-4.0-stable/platform/linuxbsd/x11/display_server_x11.cpp	2023-03-01 03:38:07.000000000 +0300
++++ godot-4.0-stable/platform/linuxbsd/x11/display_server_x11.cpp.patch	2023-03-06 00:40:29.639046058 +0300
+@@ -5456,15 +5456,15 @@
+ 		if (context_vulkan->initialize() != OK) {
+ 			memdelete(context_vulkan);
+ 			context_vulkan = nullptr;
+-			r_error = ERR_CANT_CREATE;
+-			ERR_FAIL_MSG("Could not initialize Vulkan");
++			WARN_PRINT("Could not initialize Vulkan");
++		} else {
++			driver_found = true;
+ 		}
+-		driver_found = true;
+ 	}
+ #endif
+ 	// Initialize context and rendering device.
+ #if defined(GLES3_ENABLED)
+-	if (rendering_driver == "opengl3") {
++	if (!driver_found) {
+ 		if (getenv("DRI_PRIME") == nullptr) {
+ 			int use_prime = -1;
+ 

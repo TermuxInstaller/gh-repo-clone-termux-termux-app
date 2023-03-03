@@ -1,0 +1,11 @@
+--- src/platform/linuxbsd/detect.py	2023-03-01 03:38:07.000000000 +0300
++++ src/platform/linuxbsd/detect.py.patch	2023-03-05 19:00:58.409053829 +0300
+@@ -197,8 +197,6 @@
+     # as shared libraries leads to weird issues. And graphite and harfbuzz need freetype.
+     ft_linked_deps = [
+         env["builtin_freetype"],
+-        env["builtin_libpng"],
+-        env["builtin_zlib"],
+         env["builtin_graphite"],
+         env["builtin_harfbuzz"],
+     ]
